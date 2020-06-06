@@ -4,6 +4,8 @@ import {
   Index,
   OneToMany,
   PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Article } from './article.entity';
 import { Feature } from './feature.entity';
@@ -46,6 +48,22 @@ export class Category {
     article => article.category,
   )
   articles: Article[];
+
+  @ManyToOne(
+    () => Category,
+    category => category.categories,
+    { onDelete: 'NO ACTION', onUpdate: 'CASCADE' },
+  )
+  @JoinColumn([
+    { name: 'parent_category_id', referencedColumnName: 'categoryId' },
+  ])
+  parentCategory: Category;
+
+  @OneToMany(
+    () => Category,
+    category => category.parentCategory,
+  )
+  categories: Category[];
 
   @OneToMany(
     () => Feature,
