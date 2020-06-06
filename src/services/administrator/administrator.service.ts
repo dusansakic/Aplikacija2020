@@ -22,6 +22,16 @@ export class AdministratorService {
     return this.administrator.findOne(id);
   }
 
+  async getByUsername(username: string): Promise<Administrator | null> {
+    const admin = await this.administrator.findOne({
+      username: username,
+    });
+    if (admin) {
+      return admin;
+    }
+    return null;
+  }
+
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   add(data: AddAdministratorDto): Promise<Administrator | ApiResponse> {
     // eslint-disable-next-line @typescript-eslint/no-var-requires

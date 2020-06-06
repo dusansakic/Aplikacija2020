@@ -19,6 +19,7 @@ import { CategoryController } from './controllers/api/category.controller';
 import { CategoryService } from './services/category/category.service';
 import { ArticleService } from './services/article/article.service';
 import { ArticleController } from './controllers/api/article.controller';
+import { AuthController } from './controllers/api/auth.controller';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -55,6 +56,7 @@ import { ArticleController } from './controllers/api/article.controller';
     AdministratorController,
     CategoryController,
     ArticleController,
+    AuthController,
   ],
   providers: [AdministratorService, CategoryService, ArticleService],
 })
