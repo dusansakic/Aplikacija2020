@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Photo } from 'src/entities/photo.entity';
-import { Repository } from 'typeorm';
+import { Repository, DeleteResult } from 'typeorm';
 
 @Injectable()
 export class PhotoService extends TypeOrmCrudService<Photo> {
@@ -15,5 +15,9 @@ export class PhotoService extends TypeOrmCrudService<Photo> {
 
   add(newPhoto: Photo): Promise<Photo> {
     return this.photo.save(newPhoto);
+  }
+
+  async deleteById(id: number): Promise<DeleteResult> {
+    return await this.photo.delete(id);
   }
 }
