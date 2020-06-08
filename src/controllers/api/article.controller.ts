@@ -8,6 +8,7 @@ import {
   UploadedFile,
   Req,
   Delete,
+  Patch,
 } from '@nestjs/common';
 import { Crud } from '@nestjsx/crud';
 import { Article } from 'src/entities/article.entity';
@@ -22,6 +23,7 @@ import { Photo } from 'src/entities/photo.entity';
 import * as fileType from 'file-type';
 import * as fs from 'fs';
 import * as sharp from 'sharp';
+import { EditArticleDto } from 'src/dtos/article/edit.article.dto';
 
 @Controller('api/article')
 @Crud({
@@ -54,6 +56,9 @@ import * as sharp from 'sharp';
       },
     },
   },
+  routes: {
+    exclude: ['updateOneBase', 'replaceOneBase', 'deleteOneBase'],
+  },
 })
 export class ArticleController {
   constructor(
@@ -66,6 +71,11 @@ export class ArticleController {
     @Body() data: AddArticleDto,
   ): Promise<Article | ApiResponse> {
     return this.service.createFullArticle(data);
+  }
+
+  @Patch(':id')
+  editFullArticle(@Param('id') id: number, @Body() data: EditArticleDto) {
+    return this.service.editFullArticle(id, data);
   }
 
   @Post(':id/uploadPhoto')
