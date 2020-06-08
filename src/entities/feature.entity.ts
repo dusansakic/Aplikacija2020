@@ -33,7 +33,7 @@ export class Feature {
   articleFeatures: ArticleFeature[];
 
   @ManyToMany(
-    type => Article,
+    () => Article,
     article => article.features,
   )
   @JoinTable({
