@@ -104,7 +104,7 @@ export class ArticleController {
 
           const randomPart: string = new Array(10)
             .fill(0)
-            .map(e => (Math.random() * 9).toFixed(0).toString())
+            .map(() => (Math.random() * 9).toFixed(0).toString())
             .join('');
 
           const fileName = datePart + '-' + randomPart + '-' + normalized;

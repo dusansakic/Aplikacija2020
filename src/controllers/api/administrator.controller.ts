@@ -5,7 +5,6 @@ import {
   Put,
   Body,
   Post,
-  SetMetadata,
   UseGuards,
 } from '@nestjs/common';
 import { AdministratorService } from 'src/services/administrator/administrator.service';
