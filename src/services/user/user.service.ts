@@ -15,7 +15,18 @@ export class UserService extends TypeOrmCrudService<User> {
   ) {
     super(user);
   }
-
+  async getById(id: number): Promise<User> {
+    return await this.user.findOne(id);
+  }
+  async getByEmail(email: string): Promise<User | null> {
+    const user = await this.user.findOne({
+      email: email,
+    });
+    if (user) {
+      return user;
+    }
+    return null;
+  }
   async register(data: UserRegistrationDto): Promise<User | ApiResponse> {
     const passwordHash = crypto.createHash('sha512');
     passwordHash.update(data.password);

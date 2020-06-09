@@ -75,7 +75,7 @@ import { UserService } from './services/user/user.service';
     FeatureService,
     UserService,
   ],
-  exports: [AdministratorService],
+  exports: [AdministratorService, UserService],
 })
 export class AppModule implements NestModule {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
