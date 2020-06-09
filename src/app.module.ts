@@ -24,6 +24,7 @@ import { AuthMiddleware } from './middlewares/auth.middleware';
 import { PhotoService } from './services/photo/photo.service';
 import { FeatureService } from './services/feature/feature.service';
 import { FeatureController } from './controllers/api/feature.controller';
+import { UserService } from './services/user/user.service';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -55,6 +56,7 @@ import { FeatureController } from './controllers/api/feature.controller';
       ArticleFeature,
       Photo,
       Feature,
+      User,
     ]),
   ],
   controllers: [
@@ -71,6 +73,7 @@ import { FeatureController } from './controllers/api/feature.controller';
     ArticleService,
     PhotoService,
     FeatureService,
+    UserService,
   ],
   exports: [AdministratorService],
 })
